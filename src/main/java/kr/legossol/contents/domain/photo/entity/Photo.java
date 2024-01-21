@@ -20,6 +20,9 @@ public class Photo {
     @Column(name = "photo_id")
     private Long id;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "locate")
     private String locate;
 

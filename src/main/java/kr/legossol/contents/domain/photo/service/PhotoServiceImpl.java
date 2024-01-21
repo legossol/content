@@ -3,13 +3,17 @@ package kr.legossol.contents.domain.photo.service;
 import kr.legossol.contents.domain.photo.dto.ContentsDTOV1;
 import kr.legossol.contents.domain.photo.dto.PhotoContnentDTOV1;
 import kr.legossol.contents.domain.photo.dto.VideoContentDTOV1;
+import kr.legossol.contents.domain.photo.entity.Photo;
 import kr.legossol.contents.domain.photo.entity.RoomInfo;
+import kr.legossol.contents.domain.photo.repository.PhotoRepository;
 import kr.legossol.contents.domain.photo.repository.RoomInfoRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.validation.ConstraintViolationException;
@@ -21,6 +25,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PhotoServiceImpl {
     private final RoomInfoRepository repository;
+    private final PhotoRepository photoRepository;
 
     public List<ContentsDTOV1> doSome(){
         List<ContentsDTOV1> contentsDTOV1List = new ArrayList<>();
@@ -39,4 +44,7 @@ public class PhotoServiceImpl {
         return contentsDTOV1List;
     }
 
+    public Page<Photo> findAllPhoto(String name, PageRequest pageRequest) {
+        return photoRepository.findByName(name, pageRequest);
+    }
 }

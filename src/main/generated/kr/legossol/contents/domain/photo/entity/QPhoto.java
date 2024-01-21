@@ -23,6 +23,8 @@ public class QPhoto extends EntityPathBase<Photo> {
 
     public final StringPath locate = createString("locate");
 
+    public final StringPath name = createString("name");
+
     public final StringPath size = createString("size");
 
     public QPhoto(String variable) {
